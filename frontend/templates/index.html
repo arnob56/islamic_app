@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Islamic Prayer Time App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial; background: #f2f4f7; text-align: center; padding: 20px; }
+        input, button { padding: 10px; margin: 5px; }
+        table { margin: auto; border-collapse: collapse; }
+        th, td { border: 1px solid #333; padding: 8px; }
+        .error { color: red; }
+        footer { margin-top: 30px; font-size: 12px; color: #555; }
+    </style>
+</head>
+<body>
+
+<h1>🕌 Islamic Prayer Time</h1>
+
+<form method="POST">
+    <input name="city" placeholder="City" required>
+    <input name="country" placeholder="Country" required>
+    <button type="submit">Get Prayer Times</button>
+</form>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+{% if prayers %}
+<table>
+<tr><th>Prayer</th><th>Time</th></tr>
+{% for p, t in prayers.items() %}
+<tr><td>{{ p }}</td><td>{{ t }}</td></tr>
+{% endfor %}
+</table>
+{% endif %}
+
+<footer>
+<p>
+Disclaimer: Prayer times are calculated using public APIs.
+Always verify with your local mosque.
+</p>
+<p>Powered by Aladhan API</p>
+</footer>
+
+</body>
+</html>
